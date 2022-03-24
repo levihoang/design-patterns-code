@@ -1,6 +1,6 @@
 package factorymethod.theory.present.dontuse;
 
-class ButtonCircle{
+class ButtonRectangle{
     void render(){
 
     }
@@ -8,7 +8,7 @@ class ButtonCircle{
 
     }
 }
-class ButtonRectangle{
+class ButtonCircle{
     void render(){
 
     }
@@ -26,27 +26,30 @@ class ClientCode{
 
     // Che dấu code, người dùng client không biết được thực chất của nó là gì, chỉ biết abstract class
     // hay interface
-    void load(ButtonRectangle buttonRectangle){
-        buttonRectangle.onClick();
-        buttonRectangle.render();
+
+    // Muốn thêm một kiểu Button mới thì phải chỉnh sửa code đã có, phá vỡ tính Open/Closed Principle
+    // 5 method và 100 type
+
+//
+    void load(String typeButton){
+        if (typeButton == "ButtonRectangle") {
+            ButtonRectangle buttonRectangle = new ButtonRectangle();
+            buttonRectangle.onClick();
+            buttonRectangle.render();
+        }
+        if (typeButton == "ButtonCircle") {
+            ButtonCircle buttonCircle = new ButtonCircle();
+            buttonCircle.onClick();
+            buttonCircle.render();
+        }
     }
-    void load(ButtonCircle buttonCircle){
-        buttonCircle.onClick();
-        buttonCircle.render();
-    }
-
-    void mess(ButtonRectangle buttonRectangle){
+    void mess(String typeMess){
 
     }
-    void mess(ButtonCircle buttonCircle){
+    void close(String typeClose){}
+    void download(String typeDownload){
 
     }
-
-    void close(ButtonRectangle buttonRectangle){}
-    void close(ButtonCircle buttonCircle){}
-
-    void download(ButtonRectangle buttonRectangle){}
-    void download(ButtonCircle buttonCircle){}
 }
 
 public class Main {
